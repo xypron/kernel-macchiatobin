@@ -1,0 +1,15 @@
+Source: macchiatobin-dev-kernel
+Section: kernel
+Priority: optional
+Maintainer: Heinrich Schuchardt <xypron.glpk@gmx.de>
+Build-Depends: debhelper, cpio, kmod, python, python-six, bc, gcc,
+ libncurses5-dev
+Standards-Version: 3.9.4.0
+Homepage: https://www.kernel.org/
+
+Package: macchiatobin-dev-kernel-image
+Architecture: arm64
+Section: debian-installer
+Priority: standard
+Description: Kernel image for MACCHIATObin
+ This package contains the linux kernel image for the MACCHIATObin.
