@@ -35,7 +35,7 @@ prepare:
 	test -d linux || git clone -v \
 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git \
 	linux
-	cd linux && git fetch
+	cd linux && git fetch || true
 	gpg --list-keys 79BE3E4300411886 || \
 	gpg --keyserver keys.gnupg.net --recv-key 79BE3E4300411886
 	gpg --list-keys 38DBBDC86092693E || \
