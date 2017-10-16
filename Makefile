@@ -1,6 +1,6 @@
-TAG=4.14-rc4
+TAG=4.14-rc5
 TAGPREFIX=v
-REVISION=001
+REVISION=002
 
 MK_ARCH="${shell uname -m}"
 ifneq ("aarch64", $(MK_ARCH))

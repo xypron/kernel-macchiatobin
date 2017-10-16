@@ -1,5 +1,5 @@
-macchiatobin-dev-kernel (4.14.0.1) unstable; urgency=medium
+macchiatobin-dev-kernel (4.14.0.2) unstable; urgency=medium
 
-  * Kernel 4.14-rc4 
+  * Kernel 4.14-rc5
 
- -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Sun, 15 Oct 2017 15:59:27 +0000
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Mon, 16 Oct 2017 10:17:36 +0000
