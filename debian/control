@@ -1,4 +1,4 @@
-Source: macchiatobin-dev-kernel
+Source: macchiatobin-kernel
 Section: kernel
 Priority: optional
 Maintainer: Heinrich Schuchardt <xypron.glpk@gmx.de>
@@ -7,7 +7,7 @@ Build-Depends: debhelper, cpio, kmod, python, python-six, bc, gcc,
 Standards-Version: 3.9.4.0
 Homepage: https://www.kernel.org/
 
-Package: macchiatobin-dev-kernel-image
+Package: macchiatobin-kernel-image
 Architecture: arm64
 Section: debian-installer
 Priority: standard

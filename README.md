@@ -1,7 +1,7 @@
 <h1>kernel-macchiatobin</h1>
 
 This package provides scripts to build the Linux kernel for the
-Odroid C2.
+MACCHIATObin.
 
 <h2>Debian package</h2>
 
