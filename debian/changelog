@@ -1,11 +1,5 @@
-macchiatobin-dev-kernel (4.19.10.1) unstable; urgency=medium
+macchiatobin-dev-kernel (4.20.0.1) unstable; urgency=medium
 
-  * Kernel 4.19.10 
+  * Kernel 4.20
 
- -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Wed, 19 Dec 2018 20:34:15 +0100
-
-macchiatobin-dev-kernel (4.17.1.1) unstable; urgency=medium
-
-  * Kernel 4.17.1
-
- -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Tue, 12 Jun 2018 21:55:05 +0200
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Mon, 24 Dec 2018 07:39:18 +0100
