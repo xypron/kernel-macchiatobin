@@ -1,7 +1,7 @@
 <h1>kernel-macchiatobin</h1>
 
 This package provides scripts to build the Linux kernel for the
-Odroid C2.
+MACCHIATObin.
 
 <h2>Debian package</h2>
 
@@ -10,13 +10,13 @@ Call ./build-dpkg.sh to build a Debian package.
 The package can be installed with
 
 ```
-sudo dpkg -i macchiatobin-kernel-image_<version>_arm64.deb
+sudo dpkg -i macchiatobin-dev-kernel-image_<version>_arm64.deb
 ```
 
 It can be uninstalled with
 
 ```
-sudo apt-get remove macchiatobin-kernel-image
+sudo apt-get remove macchiatobin-dev-kernel-image
 ```
 
 The Debian package installation routine shows a list of available
