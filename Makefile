@@ -62,7 +62,7 @@ build:
 	cp config/config-$(TAG) linux/.config
 	cd linux && make scripts
 	cd linux && make oldconfig
-	cd linux && DTC_FLAGS='-@' make -j6 Image firmware modules dtbs
+	cd linux && DTC_FLAGS='-@' make -j6 Image modules dtbs
 
 copy:
 	rm linux/deploy -rf
