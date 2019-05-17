@@ -14,6 +14,7 @@ export LOCALVERSION:=-R$(REVISION)-arm64
 all:
 	make prepare
 	make build
+	make -s version
 	make copy
 
 oldconfig:
@@ -46,6 +47,7 @@ prepare:
 	gpg --keyserver keys.gnupg.net --recv-key C481DBBC2C051AC4
 
 build:
+	rm -f linux/version
 	cd linux && git verify-tag $(TAGPREFIX)$(TAG) 2>&1 | \
 	grep '647F 2865 4894 E3BD 4571  99BE 38DB BDC8 6092 693E' || \
 	git verify-tag $(TAGPREFIX)$(TAG) 2>&1 | \
@@ -64,59 +66,61 @@ build:
 	cd linux && make oldconfig
 	cd linux && DTC_FLAGS='-@' make -j6 Image modules dtbs
 
+version:
+	echo "#!/bin/sh" > linux/version
+	echo "echo \\" >> linux/version
+	cd linux && make -s kernelrelease >> version
+	chmod 755 linux/version
+
 copy:
 	rm linux/deploy -rf
 	mkdir -p linux/deploy
-	echo "#!/bin/sh" > linux/deploy/version
-	echo "echo \\" >> linux/deploy/version
-	cd linux && make -s kernelrelease >> deploy/version
-	chmod 755 linux/deploy/version
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cp linux/.config linux/deploy/config-$$VERSION
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cd linux && \
 	cp arch/arm64/boot/Image deploy/vmlinuz-$$VERSION
 	cd linux && make modules_install INSTALL_MOD_PATH=deploy
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cd linux && make headers_install \
 	INSTALL_HDR_PATH=deploy/usr/src/linux-headers-$$VERSION
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cd linux && make dtbs_install \
 	INSTALL_DTBS_PATH=deploy/dtbs-$$VERSION
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	mkdir -p -m 755 linux/deploy/lib/firmware/$$VERSION; true
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	mv linux/deploy/lib/firmware/* \
 	linux/deploy/lib/firmware/$$VERSION; true
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cd linux/deploy && tar -czf $$VERSION-modules-firmware.tar.gz lib
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cd linux/deploy && tar -czf $$VERSION-headers.tar.gz usr
 
 install:
 	mkdir -p -m 755 $(DESTDIR)/boot;true
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cp linux/deploy/vmlinuz-$$VERSION $(DESTDIR)/boot;true
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cp linux/deploy/config-$$VERSION $(DESTDIR)/boot;true
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	tar -xzf linux/deploy/$$VERSION-modules-firmware.tar.gz -C $(DESTDIR)/
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	tar -xzf linux/deploy/$$VERSION-headers.tar.gz -C $(DESTDIR)/
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	mkdir -p -m 755 $(DESTDIR)/usr/lib/linux-image-$$VERSION/amlogic
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	cp -R linux/deploy/dtbs-$$VERSION/* \
 	$(DESTDIR)/usr/lib/linux-image-$$VERSION/;true
 
 uninstall:
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	rm $(DESTDIR)/lib/modules/$$VERSION -rf
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	rm $(DESTDIR)/lib/firmware/$$VERSION -rf
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	rm $(DESTDIR)/usr/src/linux-headers-$$VERSION -rf
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	rm $(DESTDIR)/usr/src/linux-image-$$VERSION -rf
 
 clean:
