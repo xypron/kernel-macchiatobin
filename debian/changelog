@@ -1,3 +1,11 @@
+macchiatobin-kernel (5.1.3) unstable; urgency=medium
+
+  * Kernel 5.1.3
+    add USB sound
+    patch for enlarged mapped PCI memory for running graphics adapter
+
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Fri, 17 May 2019 18:15:22 +0200
+
 macchiatobin-kernel (5.1.1) unstable; urgency=medium
 
   * Kernel 5.1.1
