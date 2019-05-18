@@ -124,6 +124,7 @@ uninstall:
 	rm $(DESTDIR)/usr/src/linux-image-$$VERSION -rf
 
 clean:
+	rm -f linux/version
 	test -d linux && cd linux && rm -f .config || true
 	test -d linux && cd linux && git clean -df || true
 
