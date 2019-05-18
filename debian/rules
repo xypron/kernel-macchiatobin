@@ -13,19 +13,19 @@ export DH_OPTIONS
 
 override_dh_auto_build:
 	make --no-print-directory
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	sed s/@version@/$$VERSION/g \
 	debian/templates/image.preinst.in \
 	> debian/macchiatobin-dev-kernel-image.preinst
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	sed s/@version@/$$VERSION/g \
 	debian/templates/image.postinst.in \
 	> debian/macchiatobin-dev-kernel-image.postinst
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	sed s/@version@/$$VERSION/g \
 	debian/templates/image.prerm.in \
 	> debian/macchiatobin-dev-kernel-image.prerm
-	VERSION=$$(linux/deploy/version) && \
+	VERSION=$$(linux/version) && \
 	sed s/@version@/$$VERSION/g \
 	debian/templates/image.postrm.in \
 	> debian/macchiatobin-dev-kernel-image.postrm
