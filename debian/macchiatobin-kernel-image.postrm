@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-version=4.20.0-arm64-D001-arm64
+version=5.1.5-arm64-R001-arm64
 image_path=/boot/vmlinuz-$version
 
 rm -f /lib/modules/$version/.fresh-install
