@@ -1,3 +1,0 @@
-#!/bin/bash
-
-git am ../patch/0001-arm64-dts-marvell-armada-ap806-reserve-PSCI-area.patch
