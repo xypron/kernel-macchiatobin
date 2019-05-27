@@ -31,4 +31,5 @@ override_dh_auto_build:
 	> debian/macchiatobin-dev-kernel-image.postrm
 
 override_dh_auto_install:
-	make --no-print-directory install DESTDIR=debian/macchiatobin-dev-kernel-image
+	make --no-print-directory install \
+	DESTDIR=debian/macchiatobin-kernel-image
