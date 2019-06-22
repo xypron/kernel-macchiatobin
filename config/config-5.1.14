@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.1.11 Kernel Configuration
+# Linux/arm64 5.1.14 Kernel Configuration
 #
 
 #
@@ -3904,6 +3904,7 @@ CONFIG_DRM_I2C_SIL164=m
 # AMD Library routines
 #
 CONFIG_DRM_NOUVEAU=m
+CONFIG_NOUVEAU_LEGACY_CTX_SUPPORT=y
 CONFIG_NOUVEAU_PLATFORM_DRIVER=y
 CONFIG_NOUVEAU_DEBUG=5
 CONFIG_NOUVEAU_DEBUG_DEFAULT=3
