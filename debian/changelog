@@ -1,3 +1,9 @@
+macchiatobin-kernel (5.2.2) unstable; urgency=medium
+
+  * Kernel 5.2.2
+
+ -- Heinrich Schuchardt <xypron.glpk@gmx.de>  Mon, 22 Jul 2019 00:01:15 +0200
+
 macchiatobin-kernel (5.1.17) unstable; urgency=medium
 
   * Kernel 5.1.17
