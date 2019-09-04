@@ -29,7 +29,7 @@ index a8a6a0c883f1..29524399b949 100644
  	} else {
 -		kvm_err("load/store instruction decoding not implemented\n");
 -		return -ENOSYS;
-+		kvm_inject_dabt(vpcu, kvm_vcpu_get_hfar(vcpu));
++		kvm_inject_dabt(vcpu, kvm_vcpu_get_hfar(vcpu));
 +		return 1;
  	}
  
