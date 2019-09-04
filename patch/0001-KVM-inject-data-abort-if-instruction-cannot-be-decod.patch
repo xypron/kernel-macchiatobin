@@ -1,0 +1,39 @@
+From 5c3670664671288e08ca2ab3436dd39f701f62b3 Mon Sep 17 00:00:00 2001
+From: Heinrich Schuchardt <xypron.glpk@gmx.de>
+Date: Wed, 4 Sep 2019 15:10:44 +0200
+Subject: [PATCH 1/1] KVM: inject data abort if instruction cannot be decoded
+
+If an application tries to access memory that is not mapped an error
+ENOSYS, "load/store instruction decoding not implemented" is created.
+This means that QEMU hangs.
+
+Instead create a data abort that can be handled gracefully by the
+application running in QEMU.
+
+E.g. U-Boot will analyze the data abort and provide a list of all UEFI
+binaries and their load position. With this information the problem can be
+analyzed much more easily than from a mere memory dump.
+
+Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+---
+ virt/kvm/arm/mmio.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/virt/kvm/arm/mmio.c b/virt/kvm/arm/mmio.c
+index a8a6a0c883f1..29524399b949 100644
+--- a/virt/kvm/arm/mmio.c
++++ b/virt/kvm/arm/mmio.c
+@@ -161,8 +161,8 @@ int io_mem_abort(struct kvm_vcpu *vcpu, struct kvm_run *run,
+ 		if (ret)
+ 			return ret;
+ 	} else {
+-		kvm_err("load/store instruction decoding not implemented\n");
+-		return -ENOSYS;
++		kvm_inject_dabt(vpcu, kvm_vcpu_get_hfar(vcpu));
++		return 1;
+ 	}
+ 
+ 	rt = vcpu->arch.mmio_decode.rt;
+-- 
+2.23.0.rc1
+
